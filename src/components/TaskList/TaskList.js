@@ -1,13 +1,20 @@
 import Task from "../Task";
+import { Component } from "react";
 
-const TaskList = () => {
-  return (
-    <ul className={"todo-list"}>
-      <Task status={"completed"} desc={"Completed task"} time={"17 seconds"} />
-      <Task status={"editing"} desc={"Editing task"} time={"5 minutes"} />
-      <Task desc={"Active task"} time={"5 minutes"} />
-    </ul>
-  );
-};
-
-export default TaskList;
+export default class TaskList extends Component {
+  render() {
+    return (
+      <ul className={"todo-list"}>
+        {this.props.todoData.map((item) => {
+          return (
+            <Task
+              key={item.id}
+              {...item}
+              onDelete={() => this.props.onDelete(item.id)}
+            />
+          );
+        })}
+      </ul>
+    );
+  }
+}
