@@ -3,14 +3,16 @@ import { Component } from "react";
 
 export default class TaskList extends Component {
   render() {
+    const { onToggleCompleted, onDelete, todoData } = this.props;
     return (
       <ul className={"todo-list"}>
-        {this.props.todoData.map((item) => {
+        {todoData.map((item) => {
           return (
             <Task
               key={item.id}
               {...item}
-              onDelete={() => this.props.onDelete(item.id)}
+              onDelete={() => onDelete(item.id)}
+              onToggleCompleted={() => onToggleCompleted(item.id)}
             />
           );
         })}

@@ -1,7 +1,9 @@
-const TaskFilter = ({ status, desc }) => {
+const TaskFilter = ({ status, desc, onFilter }) => {
   return (
     <li>
-      <button className={status}>{desc}</button>
+      <button className={status} onClick={onFilter}>
+        {desc}
+      </button>
     </li>
   );
 };

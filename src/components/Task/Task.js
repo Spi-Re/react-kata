@@ -3,20 +3,15 @@ import { formatRFC3339WithOptions } from "date-fns/fp";
 import { Component } from "react";
 
 export default class Task extends Component {
-  state = {
-    completed: this.props.completed,
-  };
-
-  onCheckClick = () => {
-    this.setState({
-      completed: !this.state.completed,
-    });
-  };
-
   render() {
-    const { editing = false, desc = "Пусто", id, onDelete } = this.props;
+    const {
+      editing = false,
+      desc = "Пусто",
+      onDelete,
+      onToggleCompleted,
+      completed,
+    } = this.props;
 
-    const { completed } = this.state;
     let classNames = "";
     if (completed) classNames += "completed";
     if (editing) classNames += "editing";
@@ -27,8 +22,8 @@ export default class Task extends Component {
           <input
             className={"toggle"}
             type="checkbox"
-            defaultChecked={this.state.completed}
-            onClick={this.onCheckClick}
+            defaultChecked={completed}
+            onClick={onToggleCompleted}
           />
           <label>
             <span className={"description"}>{desc}</span>
@@ -37,10 +32,7 @@ export default class Task extends Component {
             </span>
           </label>
           <button className={"icon icon-edit"}></button>
-          <button
-            className={"icon icon-destroy"}
-            onClick={this.props.onDelete}
-          ></button>
+          <button className={"icon icon-destroy"} onClick={onDelete}></button>
         </div>
 
         {editing ? (
