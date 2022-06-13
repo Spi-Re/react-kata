@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+// import { formatDistanceToNow } from "date-fns";
 
 import "./style.css";
 import NewTaskForm from "./components/NewTaskForm";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
+import { formatDistanceToNow } from "date-fns";
 
 class App extends Component {
   maxId = 100;
 
   state = {
     todoData: [
-      {
-        desc: "Completed task",
-        completed: true,
-        id: 1,
-      },
+      { desc: "Completed task", completed: true, id: 1 },
       { desc: "Editing task", completed: false, editing: false, id: 2 },
       { desc: "Active task", completed: false, id: 3 },
     ],
   };
+  myArr = [...this.state.todoData];
 
   onDelete = (id) => {
     this.setState(({ todoData }) => {
@@ -38,6 +37,7 @@ class App extends Component {
         completed: false,
         editing: false,
         id: this.maxId++,
+        time: Date.now(),
       };
       const newArr = [...todoData, newItem];
       this.myArr = newArr;
@@ -47,8 +47,8 @@ class App extends Component {
     });
   };
 
-  //   ===============================
-  myArr = [...this.state.todoData];
+  //   =============== Filters ================
+
   onAllItem = () => {
     this.setState({
       todoData: this.myArr,
