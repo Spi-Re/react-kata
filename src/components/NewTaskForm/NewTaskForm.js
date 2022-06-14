@@ -1,5 +1,5 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class NewTaskForm extends Component {
   static propTypes = {
@@ -9,16 +9,16 @@ export default class NewTaskForm extends Component {
   render() {
     const { onAddItem } = this.props;
     return (
-      <header className={"header"}>
+      <header className={'header'}>
         <h1>todos</h1>
         <input
-          className={"new-todo"}
+          className={'new-todo'}
           placeholder="What needs to be done?"
           autoFocus
           onKeyDown={(e) => {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
               onAddItem(e.target.value);
-              e.target.value = "";
+              e.target.value = '';
             }
           }}
         />

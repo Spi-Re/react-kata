@@ -1,19 +1,17 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import "./style.css";
-import NewTaskForm from "./components/NewTaskForm";
-import TaskList from "./components/TaskList";
-import Footer from "./components/Footer";
-
+import './style.css';
+import NewTaskForm from './components/NewTaskForm';
+import TaskList from './components/TaskList';
+import Footer from './components/Footer';
 class App extends Component {
   maxId = 100;
-
   state = {
     todoData: [
-      { desc: "Completed task", completed: true, id: 1 },
-      { desc: "Editing task", completed: false, editing: false, id: 2 },
-      { desc: "Active task", completed: false, id: 3 },
+      { desc: 'Completed task', completed: true, id: 1 },
+      { desc: 'Editing task', completed: false, editing: false, id: 2 },
+      { desc: 'Active task', completed: false, id: 3 },
     ],
   };
   myArr = [...this.state.todoData];
@@ -76,11 +74,7 @@ class App extends Component {
       const oldItem = todoData[idx];
       const newItem = { ...oldItem, completed: !oldItem.completed };
 
-      const newArr = [
-        ...todoData.slice(0, idx),
-        newItem,
-        ...todoData.slice(idx + 1),
-      ];
+      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
       this.myArr = newArr;
       return {
         todoData: newArr,
@@ -104,9 +98,9 @@ class App extends Component {
 
   render() {
     return (
-      <section className={"todoapp"}>
+      <section className={'todoapp'}>
         <NewTaskForm onAddItem={this.onAddItem} />
-        <section className={"main"}>
+        <section className={'main'}>
           <TaskList
             todoData={this.state.todoData}
             onDelete={this.onDelete}
@@ -125,4 +119,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

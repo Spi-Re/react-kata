@@ -1,10 +1,10 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class TaskFilter extends Component {
   static defaultProps = {
-    status: "",
-    desc: "button",
+    status: '',
+    desc: 'button',
   };
 
   static propTypes = {
