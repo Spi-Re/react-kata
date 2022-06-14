@@ -1,16 +1,28 @@
 import { formatDistanceToNow } from "date-fns";
 import { formatRFC3339WithOptions } from "date-fns/fp";
 import { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class Task extends Component {
-  // я бы поднял это свойство в верхний state, но не получается.
-  // Пытался с верхнего index.js передать параметр time во время создания task,
-  // но timestamp передаёся с ошибками, которые хз как решать.
-  // Время не валидное, чтобы не делал.
-  timeId = Date.now();
+  static defaultProps = {
+    time: new Date(),
+    desc: "Пусто",
+    editing: false,
+    completed: false,
+  };
+
+  static propTypes = {
+    time: PropTypes.instanceOf(Date),
+    editing: PropTypes.bool,
+    completed: PropTypes.bool,
+    onDelete: PropTypes.func.isRequired,
+    onToggleCompleted: PropTypes.func.isRequired,
+  };
+
+  timeId = this.props.time;
 
   state = {
-    time: formatDistanceToNow(new Date(this.timeId), {
+    time: formatDistanceToNow(this.timeId, {
       includeSeconds: true,
     }),
   };
@@ -25,21 +37,15 @@ export default class Task extends Component {
 
   tick() {
     this.setState({
-      time: formatDistanceToNow(new Date(this.timeId), {
+      time: formatDistanceToNow(this.timeId, {
         includeSeconds: true,
       }),
     });
   }
 
   render() {
-    const {
-      editing = false,
-      desc = "Пусто",
-      onDelete,
-      onToggleCompleted,
-      completed,
-      time,
-    } = this.props;
+    const { editing, desc, onDelete, onToggleCompleted, completed, time } =
+      this.props;
 
     let classNames = "";
     if (completed) classNames += "completed";

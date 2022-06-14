@@ -1,7 +1,13 @@
 import Task from "../Task";
 import { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class TaskList extends Component {
+  static propTypes = {
+    onToggleCompleted: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    todoData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
   render() {
     const { onToggleCompleted, onDelete, todoData } = this.props;
     return (

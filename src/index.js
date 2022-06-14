@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-// import { formatDistanceToNow } from "date-fns";
 
 import "./style.css";
 import NewTaskForm from "./components/NewTaskForm";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
-import { formatDistanceToNow } from "date-fns";
 
 class App extends Component {
   maxId = 100;
