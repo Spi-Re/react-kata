@@ -1,21 +1,9 @@
-import TaskFilter from '../TaskFilter';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import TaskFilter from '../TaskFilter';
+
 export default class Footer extends Component {
-  static defaultProps = {
-    todoCount: () => {},
-    todoClear: () => {},
-  };
-
-  static propTypes = {
-    todoCount: PropTypes.func,
-    todoClear: PropTypes.func,
-    onAll: PropTypes.func.isRequired,
-    onActive: PropTypes.func.isRequired,
-    onComplete: PropTypes.func.isRequired,
-  };
-
   render() {
     const { onAll, onActive, onComplete, todoCount, todoClear } = this.props;
 
@@ -34,3 +22,16 @@ export default class Footer extends Component {
     );
   }
 }
+
+Footer.defaultProps = {
+  todoCount: () => {},
+  todoClear: () => {},
+};
+
+Footer.propTypes = {
+  todoCount: PropTypes.func,
+  todoClear: PropTypes.func,
+  onAll: PropTypes.func.isRequired,
+  onActive: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
+};

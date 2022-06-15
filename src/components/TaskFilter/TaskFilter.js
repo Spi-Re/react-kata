@@ -2,16 +2,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class TaskFilter extends Component {
-  static defaultProps = {
-    status: '',
-    desc: 'button',
-  };
-
-  static propTypes = {
-    status: PropTypes.string,
-    desc: PropTypes.node,
-    onFilter: PropTypes.func.isRequired,
-  };
   render() {
     let { status, desc, onFilter } = this.props;
 
@@ -24,3 +14,14 @@ export default class TaskFilter extends Component {
     );
   }
 }
+
+TaskFilter.defaultProps = {
+  status: '',
+  desc: 'button',
+};
+
+TaskFilter.propTypes = {
+  status: PropTypes.string,
+  desc: PropTypes.node,
+  onFilter: PropTypes.func.isRequired,
+};

@@ -3,29 +3,15 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Task extends Component {
-  static defaultProps = {
-    time: new Date(),
-    desc: 'Пусто',
-    editing: false,
-    completed: false,
-  };
-
-  static propTypes = {
-    time: PropTypes.instanceOf(Date),
-    desc: PropTypes.node,
-    editing: PropTypes.bool,
-    completed: PropTypes.bool,
-    onDelete: PropTypes.func.isRequired,
-    onToggleCompleted: PropTypes.func.isRequired,
-  };
-
-  createTime = this.props.time;
-
-  state = {
-    time: formatDistanceToNow(this.createTime, {
-      includeSeconds: true,
-    }),
-  };
+  constructor(props) {
+    super();
+    this.createTime = props.time;
+    this.state = {
+      time: formatDistanceToNow(this.createTime, {
+        includeSeconds: true,
+      }),
+    };
+  }
 
   componentDidMount() {
     this.timer = setInterval(() => this.tick(), 1000);
@@ -67,3 +53,19 @@ export default class Task extends Component {
     );
   }
 }
+
+Task.defaultProps = {
+  time: new Date(),
+  desc: 'Пусто',
+  editing: false,
+  completed: false,
+};
+
+Task.propTypes = {
+  time: PropTypes.instanceOf(Date),
+  desc: PropTypes.node,
+  editing: PropTypes.bool,
+  completed: PropTypes.bool,
+  onDelete: PropTypes.func.isRequired,
+  onToggleCompleted: PropTypes.func.isRequired,
+};
