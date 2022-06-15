@@ -1,11 +1,3 @@
-// import patch first
-import 'hostname-patcher';
-// then os
-import os from 'os';
-
-// will output "localhost" if patch, else your real hostname
-console.log(os.hostname());
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
