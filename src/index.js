@@ -1,3 +1,11 @@
+// import patch first
+import 'hostname-patcher';
+// then os
+import os from 'os';
+
+// will output "localhost" if patch, else your real hostname
+console.log(os.hostname());
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -5,6 +13,7 @@ import './style.css';
 import NewTaskForm from './components/NewTaskForm';
 import TaskList from './components/TaskList';
 import Footer from './components/Footer';
+
 class App extends Component {
   constructor() {
     super();
