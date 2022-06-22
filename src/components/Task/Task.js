@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { formatDistanceToNow } from 'date-fns';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -30,7 +31,8 @@ export default class Task extends Component {
   }
 
   render() {
-    const { editing, desc, onDelete, onToggleCompleted, completed } = this.props;
+    const { editing, desc, id, onDelete, onToggleCompleted, completed } = this.props;
+    const { time } = this.state;
 
     let classNames = '';
     if (completed) classNames += 'completed';
@@ -38,17 +40,23 @@ export default class Task extends Component {
 
     return (
       <li className={classNames}>
-        <div className={'view'}>
-          <input className={'toggle'} type="checkbox" defaultChecked={completed} onClick={onToggleCompleted} />
-          <label>
-            <span className={'description'}>{desc}</span>
-            <span className={'created'}>created {this.state.time} ago</span>
+        <div className="view">
+          <input
+            id={`check${id}`}
+            className="toggle"
+            type="checkbox"
+            defaultChecked={completed}
+            onClick={onToggleCompleted}
+          />
+          <label htmlFor={`check${id}`}>
+            <span className="description">{desc}</span>
+            <span className="created">created {time} ago</span>
           </label>
-          <button className={'icon icon-edit'}></button>
-          <button className={'icon icon-destroy'} onClick={onDelete}></button>
+          <button type="button" className="icon icon-edit" />
+          <button type="button" className="icon icon-destroy" onClick={onDelete} />
         </div>
 
-        {editing ? <input type="text" className={'edit'} placeHolder={desc} /> : null}
+        {editing ? <input type="text" className="edit" placeHolder={desc} /> : null}
       </li>
     );
   }

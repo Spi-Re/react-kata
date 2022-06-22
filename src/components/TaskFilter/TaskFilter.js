@@ -2,12 +2,24 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class TaskFilter extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
   render() {
-    let { status, desc, onFilter } = this.props;
+    const { status, desc, onFilter, onActive } = this.props;
 
     return (
       <li>
-        <button className={status} onClick={onFilter}>
+        <button
+          type="button"
+          className={status}
+          onClick={() => {
+            onActive(desc);
+            onFilter(desc);
+          }}
+        >
           {desc}
         </button>
       </li>
@@ -16,12 +28,10 @@ export default class TaskFilter extends Component {
 }
 
 TaskFilter.defaultProps = {
-  status: '',
   desc: 'button',
 };
 
 TaskFilter.propTypes = {
-  status: PropTypes.string,
   desc: PropTypes.node,
   onFilter: PropTypes.func.isRequired,
 };
